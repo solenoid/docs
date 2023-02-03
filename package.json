@@ -10,7 +10,7 @@
     "write:format": "prettier --write '**/*.{js,json,ts,tsx,md,css}'",
     "test:format": "prettier --check '**/*.{js,json,ts,tsx,md,css}'",
     "test:lint": "next lint",
-    "test:types": "tsc src --noEmit"
+    "test:types": "tsc --noEmit"
   },
   "dependencies": {
     "@types/node": "18.11.18",
