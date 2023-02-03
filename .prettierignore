@@ -1,0 +1,12 @@
+# See https://prettier.io/docs/en/ignore.html for more about ignoring files.
+
+# next.js
+.next/
+out/
+build
+
+# vite.js
+dist
+
+# vscode
+.vscode/
