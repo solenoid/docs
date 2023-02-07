@@ -11,13 +11,20 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       return res.status(400).send('Expecting a list of pathParts')
     }
     const relativePath = pathParts.slice(0, -1)?.join('/')
+    const resourceName = pathParts.slice(-1)[0]
     const pathWithTrailingSlash = relativePath ? `${relativePath}/` : ''
-    const resourcePath = pathParts.join('/')
     if (Array.isArray(org) || Array.isArray(repo)) {
       return res.status(400).send('Only one org and one repo is supported')
     }
     const config = getOrgRepoConfig(org, repo)
-    const resource = `${config?.site}${resourcePath}`
+    let fetchName = resourceName
+    if (resourceName === 'README.md' && config?.home) {
+      fetchName = config.home
+    }
+    if (resourceName === '_sidebar.md' && config?.sidebar) {
+      fetchName = config.sidebar
+    }
+    const resource = `${config?.site}${pathWithTrailingSlash}${fetchName}`
     const fetchPromise = await fetch(resource)
     if (fetchPromise.status !== 200) {
       return res.status(404).send('Not Found')

@@ -20,11 +20,6 @@ type docLinks = Array<{
  */
 const items: docLinks = [
   {
-    name: 'Docsify site',
-    org_repo: 'solenoid/demo',
-    site: 'http://localhost:9998/',
-  },
-  {
     name: 'DocsifyJS Tutorial',
     org_repo: 'michaelcurrin/docsify-js-tutorial',
     site: 'https://michaelcurrin.github.io/docsify-js-tutorial/',
@@ -55,7 +50,7 @@ export const getSideBarLinks = () => {
     '',
     ...items
       // show deeper links that assume link rewriting will work
-      .map((d) => `  - [${d.name}](/${d.org_repo}/${d.home ?? 'README.md'})`),
+      .map((d) => `  - [${d.name}](/${d.org_repo}/)`),
   ].join('\n')
 }
 
